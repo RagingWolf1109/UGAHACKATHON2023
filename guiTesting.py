@@ -28,4 +28,3 @@ button1.pack(padx = 3, pady = 3)
 
 root.title("Test")
 root.mainloop()
-
