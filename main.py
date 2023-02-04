@@ -13,21 +13,24 @@ def search():
 
 frame.pack()
 
+#left frame
 leftframe = Frame(root)
 leftframe.pack(side=LEFT)
 
+#right frame
 rightframe = Frame(root)
 rightframe.pack(side=RIGHT)
 
+#Label
 label = Label(frame, text="This is a label")
 label.pack()
-
 
 def show_website():
     print("Displaying website")
 
 button = Button(frame, text="Show Website", command=show_website)
 button.pack(side=LEFT)
+
 button1 = Button(leftframe, text="Button 1")
 button1.pack(padx = 3, pady = 3)
 
