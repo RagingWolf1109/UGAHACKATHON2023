@@ -28,16 +28,22 @@ button1.place(x=0, y=0)
 button1.pack(padx = 3, pady = 3)
 
 #Search Bar
+location_label = Label(frame, text="City, State:")
+location_label.pack(padx = 3, pady = 3)
 location_entry = Entry(frame, width=50)
-location_entry.insert(0,'City, State')
+location_entry.insert(0,'')
 location_entry.pack(padx = 3, pady = 3)
 
+date_label = Label(frame, text="Date:")
+date_label.pack(padx = 3, pady = 3)
 date_entry = Entry(frame, width=50)
-date_entry.insert(0,'Date')
+date_entry.insert(0,'')
 date_entry.pack(padx = 3, pady = 3)
 
+people_label = Label(frame, text="Number of People:")
+people_label.pack(padx = 3, pady = 3)
 people_entry = Entry(frame, width=50)
-people_entry.insert(0,'Number of People')
+people_entry.insert(0,'')
 people_entry.pack(padx = 3, pady = 3)
 
 #Search Button
