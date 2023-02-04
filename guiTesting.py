@@ -20,11 +20,6 @@ def change_to_search():
 label = Label(frame, text="Choose Your Adventure!",font = ('Comic Sans MS', 40))
 label.pack()
 
-#Read Me
-button1 = Button(frame, text="Button 1")
-button1.place(x=0, y=0)
-button1.pack(padx = 3, pady = 3)
-
 #Search Bar
 location_label = Label(frame, text="City, State:")
 location_label.pack(padx = 3, pady = 3)
@@ -44,23 +39,25 @@ people_entry = Entry(frame, width=50)
 people_entry.insert(0,'')
 people_entry.pack(padx = 3, pady = 3)
 
-# Entry widget for destination
-#destination_label = Label(frame, text="Destination:")
-#destination_label.pack(side=LEFT)
-destination_var = StringVar()
-destination_entry = Entry(frame, textvariable=destination_var)
-destination_entry.pack(side=LEFT)
+destination_label = Label(frame, text="Destination:")
+destination_label.pack(padx = 3, pady = 3)
+destination_entry = Entry(frame, width=50)
+destination_entry.insert(0,'')
+destination_entry.pack(padx = 3, pady = 3)
 
-# Entry widget for departure date
-#departure_date_label = Label(frame, text="Departure Date:")
-#departure_date_label.pack(side=LEFT)
-departure_date_var = StringVar()
-departure_date_entry = Entry(frame, textvariable=departure_date_var)
-departure_date_entry.pack(side=LEFT)
+departure_date_label = Label(frame, text="Departure Date:")
+departure_date_label.pack(padx = 3, pady = 3)
+departure_date_entry = Entry(frame, width=50)
+departure_date_entry.insert(0,'')
+departure_date_entry.pack(padx = 3, pady = 3)
 
 #Search Button
 button2 = Button(frame, text="Search",command = change_to_search)
 button2.pack(padx = 3, pady = 3)
+
+#Read Me
+button1 = Button(frame, text="How-To")
+button1.pack(padx = 3, pady = 3)
 
 #Loading Screen Button
 #If Done Searching Display Button
