@@ -1,4 +1,4 @@
-#tkinter import
+#imports
 from tkinter import *
 import sys
 import os
@@ -8,16 +8,19 @@ import time
 root = Tk()
 root.geometry('1000x1000')
 
+#background image
 bgimg = PhotoImage(file="background.png")
 limg= Label(root, image=bgimg)
 limg.place(x=0, y=0)
 
+#variables
 location = ""
 date = ""
 people = ""
 destination = ""
 departure_date = ""
 
+#Creating the read me
 def read_me():
     top = Toplevel(root)
     top.geometry('750x250')
@@ -60,6 +63,7 @@ departure_date_entry.insert(0,'')
 departure_date_label.place(x = 240, y = 350)
 departure_date_entry.place(x = 350, y = 350)
 
+#changing screens after receving input
 def change_to_search():
     location = location_entry.get()
     date = date_entry.get()
@@ -90,7 +94,7 @@ button2.place(x = 400, y = 450)
 button1 = Button(root, text="How-To",command = read_me)
 button1.place(x = 500, y = 450)
 
-
+#changing to results screen
 def change_to_results():
     limg.destroy()
     results_label = Label(root, text="Results For" + location)
@@ -103,6 +107,7 @@ def change_to_results():
     restart_button.place(x = 0, y = 600)
     #printing out api results here
 
+#restart function
 def restart():
     python = sys.executable
     os.execl(python, python, * sys.argv)
