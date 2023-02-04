@@ -28,6 +28,30 @@ label.pack()
 def show_website():
     print("Displaying website")
 
+def show_options():
+    options = []
+    if option1_var.get():
+        options.append("Option 1")
+    if option2_var.get():
+        options.append("Option 2")
+    if option3_var.get():
+        options.append("Option 3")
+
+
+option1_var = BooleanVar()
+option2_var = BooleanVar()
+option3_var = BooleanVar()
+
+
+option1 = Checkbutton(frame, text="Option 1", variable=option1_var)
+option1.pack(side=LEFT)
+
+option2 = Checkbutton(frame, text="Option 2", variable=option2_var)
+option2.pack(side=LEFT)
+
+option3 = Checkbutton(frame, text="Option 3", variable=option3_var)
+option3.pack(side=LEFT)
+
 button = Button(frame, text="Show Website", command=show_website)
 button.pack(side=LEFT)
 
@@ -41,3 +65,4 @@ search_button = Button(frame, text="Search", command=search)
 search_button.pack(side=LEFT)
 
 root.mainloop()
+
