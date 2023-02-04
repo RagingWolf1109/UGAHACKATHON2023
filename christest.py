@@ -14,7 +14,7 @@ frame.pack()
 
 # Entry widget for destination
 destination_label = Label(frame, text="Destination:")
-destination_label.pack(side=BOTTOM)
+destination_label.pack(side=LEFT)
 destination_var = StringVar()
 destination_entry = Entry(frame, textvariable=destination_var)
 destination_entry.pack(side=LEFT)
