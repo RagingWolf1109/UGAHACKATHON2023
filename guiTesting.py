@@ -65,6 +65,7 @@ departure_date_entry.place(x = 350, y = 350)
 
 #changing screens after receving input
 def change_to_search():
+    global location 
     location = location_entry.get()
     date = date_entry.get()
     people = people_entry.get()
@@ -81,7 +82,7 @@ def change_to_search():
     button2.destroy()
     button1.destroy()
     #Loading Screen
-    button3 = Button(root, text="Begin Your Adventure!",command = lambda:[change_to_results(),button3.destroy()])
+    button3 = Button(root, text="Start your Adventure!",command = lambda:[change_to_results(),button3.destroy()])
     button3.place(x = 400, y = 500)
 
 
@@ -97,7 +98,9 @@ button1.place(x = 500, y = 450)
 #changing to results screen
 def change_to_results():
     limg.destroy()
-    results_label = Label(root, text="Results For" + location)
+    global location_results
+    location_results = location
+    results_label = Label(root, text="Results For" + location_results)
     results_label.place(x = 0, y = 0)
     hotel_label = Label(root, text="Hotels:")
     hotel_label.place(x = 100, y = 0)
