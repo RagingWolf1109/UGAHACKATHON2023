@@ -1,15 +1,21 @@
-import http.client
+import requests
+import json
+import pandas 
 
-conn = http.client.HTTPSConnection("hotels4.p.rapidapi.com")
+url = "https://travel-advisor.p.rapidapi.com/locations/v2/auto-complete"
+
+querystring = {"query":"eiffel tower","lang":"en_US","units":"km"}
 
 headers = {
-    'X-RapidAPI-Key': "5e1f8d911dmshb5aa1f1b7f0b470p198d8djsn21c588b9da4a",
-    'X-RapidAPI-Host': "hotels4.p.rapidapi.com"
-    }
+	"X-RapidAPI-Key": "5e1f8d911dmshb5aa1f1b7f0b470p198d8djsn21c588b9da4a",
+	"X-RapidAPI-Host": "travel-advisor.p.rapidapi.com"
+}
 
-conn.request("GET", "/v2/get-meta-data", headers=headers)
+response = requests.request("GET", url, headers=headers, params=querystring)
 
-res = conn.getresponse()
-data = res.read()
+print(response.text)
 
-print(data.decode("utf-8"))
+#response.raise_for_status()
+json_response = response.json()
+
+print("Print each key-value pair from JSON response")
