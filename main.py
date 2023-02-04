@@ -1,70 +1,121 @@
+#imports
 from tkinter import *
+import sys
+import os
+import time
 
+#main window
 root = Tk()
-root.geometry("2000x1500")
-root.config(bg="#87CEEB")
-root.title("Search")
-frame = Frame(root)
-frame.pack()
+root.geometry('1000x1000')
 
-def search():
-    query = search_entry.get()
-    print("Searching for:", query)
+#background image
+bgimg = PhotoImage(file="background.png")
+limg= Label(root, image=bgimg)
+limg.place(x=0, y=0)
 
-frame.pack()
+#variables
+location = ""
+date = ""
+people = ""
+destination = ""
+departure_date = ""
 
-#left frame
-leftframe = Frame(root)
-leftframe.pack(side=LEFT)
-
-#right frame
-rightframe = Frame(root)
-rightframe.pack(side=RIGHT)
+#Creating the read me
+def read_me():
+    top = Toplevel(root)
+    top.geometry('750x250')
+    top.title("How-To")
+    Label(top,text="Welcome to Adventure Finder!").place(x=0,y=0)
+    Label(top,text="To begin, enter the city,state you are traveling from.").place(x=0,y=20)
+    Label(top,text="Next, enter the date you are traveling on in the form mm/dd/yyyy.").place(x=0,y=40)
+    Label(top,text="Next, enter the number of people you are traveling with.").place(x=0,y=60)
+    Label(top,text="Finally, enter the date you are leaving in the form mm/dd/yyyy.").place(x=0,y=80)
+    Label(top,text="This application was created by: Liam Hosfeld, Andrew Grahm, Riley Elwood, and Christopher Ghattas during UGA Hackathon 2023").place(x=0,y=100)
+    Label(top,text="Enjoy your adventure!").place(x=0,y=140)
 
 #Label
-label = Label(frame, text="This is a label")
-label.pack()
+homescreen_title = Label(root, text="Choose Your Adventure!",font = ('Comic Sans MS', 40))
+homescreen_title.place(x = 200, y = 0)
 
-def show_website():
-    print("Displaying website")
+#Search Bar: Location, Date, Number of People, Destination, Departure Date
+location_label = Label(root, text="City, State:")
+location_entry = Entry(root, width=50)
+location_entry.insert(0,'')
+location_label.place(x = 240, y = 200)
+location_entry.place(x = 350, y = 200)
 
-def show_options():
-    options = []
-    if option1_var.get():
-        options.append("Option 1")
-    if option2_var.get():
-        options.append("Option 2")
-    if option3_var.get():
-        options.append("Option 3")
+date_label = Label(root, text="Arrival Date:")
+date_entry = Entry(root, width=50)
+date_entry.insert(0,'')
+date_label.place(x = 240, y = 250)
+date_entry.place(x = 350, y = 250)
 
+people_label = Label(root, text="Number of People:")
+people_entry = Entry(root, width=50)
+people_entry.insert(0,'')
+people_label.place(x = 240, y = 300)
+people_entry.place(x = 350, y = 300)
 
-option1_var = BooleanVar()
-option2_var = BooleanVar()
-option3_var = BooleanVar()
+departure_date_label = Label(root, text="Departure Date:")
+departure_date_entry = Entry(root, width=50)
+departure_date_entry.insert(0,'')
+departure_date_label.place(x = 240, y = 350)
+departure_date_entry.place(x = 350, y = 350)
 
+#changing screens after receving input
+def change_to_search():
+    #getting user input
+    global location 
+    location = location_entry.get()
+    date = date_entry.get()
+    people = people_entry.get()
+    departure_date = departure_date_entry.get()
+    #cleaning the homescreen
+    homescreen_title.destroy()
+    location_label.destroy()
+    location_entry.destroy()
+    date_label.destroy()
+    date_entry.destroy()
+    people_label.destroy()
+    people_entry.destroy()
+    departure_date_label.destroy()
+    departure_date_entry.destroy()
+    button2.destroy()
+    button1.destroy()
 
-option1 = Checkbutton(frame, text="Option 1", variable=option1_var)
-option1.pack(side=LEFT)
+    #Loading Screen
+    #lambda allows us to use multiple commands in one button
+    button3 = Button(root, text="Start your Adventure!",command = lambda:[change_to_results(),button3.destroy()])
+    button3.place(x = 400, y = 500)
 
-option2 = Checkbutton(frame, text="Option 2", variable=option2_var)
-option2.pack(side=LEFT)
+#Search Button
+button2 = Button(root, text="Search",command = change_to_search)
+button2.place(x = 400, y = 450)
+#Read Me
+button1 = Button(root, text="How-To",command = read_me)
+button1.place(x = 500, y = 450)
 
-option3 = Checkbutton(frame, text="Option 3", variable=option3_var)
-option3.pack(side=LEFT)
+#changing to results screen
+def change_to_results():
+    #cleaning the  loading screen
+    limg.destroy()
+    global location_results
+    location_results = location
+    #creating the results screen
+    results_label = Label(root, text="Results For" + location_results)
+    results_label.place(x = 0, y = 0)
+    hotel_label = Label(root, text="Hotels:")
+    hotel_label.place(x = 100, y = 0)
+    travel_label = Label(root, text="Travel:")
+    travel_label.place(x = 300, y = 0)
+    restart_button = Button(root, text="Restart",command = lambda:[restart(),restart_button.destroy()])
+    restart_button.place(x = 0, y = 600)
+    #printing out api results here
 
-button = Button(frame, text="Show Website", command=show_website)
-button.pack(side=LEFT)
+#restart function
+def restart():
+    python = sys.executable
+    os.execl(python, python, * sys.argv)
 
-button1 = Button(leftframe, text="Button 1")
-button1.pack(padx = 3, pady = 3)
-
-search_entry = Entry(frame)
-search_entry.pack(side=LEFT)
-
-search_button = Button(frame, text="Search", command=search)
-search_button.pack(side=LEFT)
-
-
-
+root.title("Adventure Finder")
 root.mainloop()
-

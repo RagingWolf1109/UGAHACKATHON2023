@@ -34,9 +34,8 @@ def read_me():
     Label(top,text="Enjoy your adventure!").place(x=0,y=140)
 
 #Label
-label = Label(root, text="Choose Your Adventure!",font = ('Comic Sans MS', 40))
-label.place(x = 200, y = 0)
-#label.pack()
+homescreen_title = Label(root, text="Choose Your Adventure!",font = ('Comic Sans MS', 40))
+homescreen_title.place(x = 200, y = 0)
 
 #Search Bar: Location, Date, Number of People, Destination, Departure Date
 location_label = Label(root, text="City, State:")
@@ -65,12 +64,14 @@ departure_date_entry.place(x = 350, y = 350)
 
 #changing screens after receving input
 def change_to_search():
+    #getting user input
     global location 
     location = location_entry.get()
     date = date_entry.get()
     people = people_entry.get()
     departure_date = departure_date_entry.get()
-    label.destroy()
+    #cleaning the homescreen
+    homescreen_title.destroy()
     location_label.destroy()
     location_entry.destroy()
     date_label.destroy()
@@ -81,14 +82,13 @@ def change_to_search():
     departure_date_entry.destroy()
     button2.destroy()
     button1.destroy()
+
     #Loading Screen
+    #lambda allows us to use multiple commands in one button
     button3 = Button(root, text="Start your Adventure!",command = lambda:[change_to_results(),button3.destroy()])
     button3.place(x = 400, y = 500)
 
-
-
 #Search Button
-#button2 = Button(root, text="Search",command =lambda:[change_to_search,get_input])
 button2 = Button(root, text="Search",command = change_to_search)
 button2.place(x = 400, y = 450)
 #Read Me
@@ -97,9 +97,11 @@ button1.place(x = 500, y = 450)
 
 #changing to results screen
 def change_to_results():
+    #cleaning the  loading screen
     limg.destroy()
     global location_results
     location_results = location
+    #creating the results screen
     results_label = Label(root, text="Results For" + location_results)
     results_label.place(x = 0, y = 0)
     hotel_label = Label(root, text="Hotels:")
